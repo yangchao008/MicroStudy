@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/practiceFragment"
+            android:id="@+id/mainNavigation">
+
+    <fragment
+            android:name="com.chao.microstudy.PracticeFragment"
+            tools:layout="@layout/fragment_practice"
+            android:label="practiceFragment"
+            android:id="@+id/practiceFragment"/>
+
+    <fragment
+            android:name="com.chao.microstudy.ExamFragment"
+            tools:layout="@layout/fragment_exam"
+            android:label="examFragment"
+            android:id="@+id/examFragment"/>
+
+    <fragment
+            android:name="com.chao.microstudy.MeFragment"
+            tools:layout="@layout/fragment_me"
+            android:label="meFragment"
+            android:id="@+id/meFragment"/>
+
+</navigation>

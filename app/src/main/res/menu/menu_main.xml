@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/practiceFragment"
+		android:icon="@drawable/main_ic_market"
+		android:title="练习"/>
+
+	<item
+		android:id="@+id/examFragment"
+		android:icon="@drawable/main_ic_favorite"
+		android:title="考核"/>
+
+	<item
+		android:id="@+id/meFragment"
+		android:icon="@drawable/main_ic_me"
+		android:title="我的"/>
+
+
+
+</menu>
