@@ -25,7 +25,9 @@ class PracticeFragment : Fragment(){
     }
     private val texts = listOf(
         "DragCircularView",
-        "WaterDropMoveView"
+        "WaterDropMoveView",
+        "PathMeasureView",
+        "SplitView"
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

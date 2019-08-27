@@ -69,7 +69,7 @@ class WaterDropMoveView(context: Context) : View(context,null) {
         mDPoint.set(width * 4,height)
 
         mWaterPath.moveTo(0.toFloat(),h.toFloat())
-        mWaterPath.quadTo(w / 2.toFloat(),height * 16 / 15,w.toFloat(),h.toFloat())
+        mWaterPath.quadTo(w / 2.toFloat(), (h - 100).toFloat(),w.toFloat(),h.toFloat())
 
         val text = texts[0]
         mTextPaint.getTextBounds(text, 0, text.length, mTextBounds)
@@ -81,7 +81,7 @@ class WaterDropMoveView(context: Context) : View(context,null) {
         mDWaterDrop.set(width * 4,height)
 
         for (i in mChangeRadius.size-1 downTo 0){
-            mChangeRadius[i] = mRadius / 4
+            mChangeRadius[i] = mRadius / 2
         }
 
         startWave()
@@ -111,29 +111,39 @@ class WaterDropMoveView(context: Context) : View(context,null) {
 //            if (it.y <= point.y){
 //                return
 //            }
-            val offset = 0
+            var offset = 30
+            if (index == 2 || index == 1){
+                offset+= 5
+            }
             val centerY = (height + point.y) / 2
             val changeWaterDrops = mChangeWaterDrops[index]
             val waterDropPath = mWaterDropPaths[index]
             waterDropPath.reset()
-            if (it.y > centerY - 10) {
-                changeWaterDrops.set(it.x,it.y + changeRadius + radius + offset)
+            var controlOffset: Float
+            if (it.y > centerY + offset) {
+                controlOffset = (height - it.y) * 0.2f
+
+                changeWaterDrops.set(it.x, height + changeRadius + radius + offset)
 
                 waterDropPath.moveTo(changeWaterDrops.x - changeRadius,changeWaterDrops.y)
                 val controlX = it.x
                 val controlY = (changeWaterDrops.y + it.y) / 2.toFloat()
-                waterDropPath.quadTo(controlX, controlY, it.x - radius, it.y)
+                waterDropPath.quadTo(controlX + controlOffset, controlY, it.x - radius, it.y)
                 waterDropPath.lineTo(it.x + radius, it.y)
-                waterDropPath.quadTo(controlX, controlY, changeWaterDrops.x + changeRadius, changeWaterDrops.y)
-            }else {
-                changeWaterDrops.set(it.x,it.y - changeRadius - radius - offset)
+                waterDropPath.quadTo(controlX - controlOffset, controlY, changeWaterDrops.x + changeRadius, changeWaterDrops.y)
+            }else
+                if (it.y < centerY - offset + 10)
+            {
+                controlOffset = (it.y - point.y)* 0.05f
+
+                changeWaterDrops.set(it.x,point.y)
 
                 waterDropPath.moveTo(it.x - radius,it.y)
                 val controlX = it.x
                 val controlY = (changeWaterDrops.y + it.y) / 2.toFloat()
-                waterDropPath.quadTo(controlX, controlY, changeWaterDrops.x - changeRadius, changeWaterDrops.y)
+                waterDropPath.quadTo(controlX + controlOffset, controlY, changeWaterDrops.x - changeRadius, changeWaterDrops.y)
                 waterDropPath.lineTo(changeWaterDrops.x + changeRadius, changeWaterDrops.y)
-                waterDropPath.quadTo(controlX, controlY, it.x + radius, it.y)
+                waterDropPath.quadTo(controlX - controlOffset, controlY, it.x + radius, it.y)
             }
             canvas.drawCircle(changeWaterDrops.x,changeWaterDrops.y,changeRadius,mCircularPaint)
             canvas.drawPath(waterDropPath,mCircularPaint)
@@ -194,7 +204,7 @@ class WaterDropMoveView(context: Context) : View(context,null) {
                 val offset = 10 * progress
                 mWaterPath.moveTo(0.toFloat() + offset,height.toFloat())
                 val controlX = width / 2.toFloat()
-                val controlY = height / 8.toFloat() * 7 + offset
+                val controlY = height - 100 + offset
                 mWaterPath.quadTo(controlX,controlY,width.toFloat() + offset,height.toFloat())
                 invalidate()
             }
