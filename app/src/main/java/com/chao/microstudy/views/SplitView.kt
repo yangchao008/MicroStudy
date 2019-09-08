@@ -11,6 +11,10 @@ import android.view.View
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.ColorMatrix
+
+
 
 
 /**
@@ -33,6 +37,7 @@ class SplitView (context: Context) : View(context,null) {
     init {
         mPaint.isAntiAlias = true
         mBitmap = BitmapFactory.decodeResource(resources, com.chao.microstudy.R.mipmap.ic_directed_avator)
+        mBitmap = grey(mBitmap)
 
         for (i in 0 until mBitmap.width){
             for (j in 0 until mBitmap.height){
@@ -62,6 +67,26 @@ class SplitView (context: Context) : View(context,null) {
             }
         }
     }
+
+    fun grey(bitmap: Bitmap): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+
+        val faceIconGreyBitmap = Bitmap
+            .createBitmap(width, height, Bitmap.Config.ARGB_8888)
+
+        val canvas = Canvas(faceIconGreyBitmap)
+        val paint = Paint()
+        val colorMatrix = ColorMatrix()
+        colorMatrix.setSaturation(0f)
+        val colorMatrixFilter = ColorMatrixColorFilter(
+            colorMatrix
+        )
+        paint.colorFilter = colorMatrixFilter
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+        return faceIconGreyBitmap
+    }
+
 
     private fun rangInt(i: Int, j: Int): Int {
         val max = max(i, j)

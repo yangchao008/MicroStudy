@@ -1,0 +1,60 @@
+
+《UI原理与高级绘制》练习
+
+11.题回答
+
+    创建一个和原图宽高大小一样的bitmap；
+
+    .new一个Canvas传入1中创建的bitmap；
+
+    创建ColorMatrix并设置颜色矩阵的饱和度为0，并创建ColorMatrixColorFilter传入ColorMatrix对象
+
+    创建paint对象，调用paint.setColorFilter方法
+
+    利用2中创建的canvas，调用drawBitmap
+
+12.题回答
+
+    自定义一个MyImgView只是显示一张图片，控件大小就是图片大小；
+
+    在DragImageActivity里重写onTouchEvent方法；
+
+    在onTouchEvent方法中，ACTION_DOWN事件通过Rect.contains(x,y)，判断是否触摸到MyImgView，碰到有toast提示，并且在ACTION_MOVE事件里面对MyImgView进行平移，让控件跟随手指移动而移动。
+
+《经典屏幕适配&实战》练习
+
+11.题回答
+
+    在activity布局中自己定义一个toolbar，背景设置一张图片；
+
+    注册activity时theme定义为Theme.AppCompat.Light.NoActionBar
+
+    在activity的oncreate中设置沉浸式，需要对sdk版本作适配
+
+    当sdk大于等于21的时候，获取activity的window的对象，对window对象clearFlags，且添加FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS 的Flags，设置状态栏颜色透明，拿到window中decorView的systemUiVisibility，添加 | 操作设置布局内容全屏展示和防止内容区域大小发生变化，最后把新得到的systemUiVisibility重新赋值给window中的decorView;
+
+    如果sdk小于21，window添加FLAG_TRANSLUCENT_STATUS的flags;
+
+    最后获取toolbar中的layoutParams实例，高度增加statusBar的高度，paddingTop也增加statusBar的高度。
+
+12.题回答
+
+    方案一：以屏幕尺寸1920*1080为标准，手动修改density(dpi)
+    缺点：不同的第三方库适配的屏幕尺寸标准都不一样，显示效果差异大；
+
+    方案二：以屏幕尺寸1920*1080为标准，提供一套水平和竖直方向的缩放比例，还有传入宽高大小，根据缩放比例重新计算后的宽高返回
+
+    缺点：比较繁琐
+
+    方案三：自己定义ViewGroup，如UIRelativeLayout，根据方案二，对子view中的LayoutParams变量值重新计算，起一个装饰的作用
+
+    缺点：只能对直接子view起作用，无法渗透深层的view
+
+13.题回答
+
+    问题一：按钮被刘海挡住了，无法操作
+    方案：activity的layout设置paddingTop的高度为状态栏的高度
+
+    问题二：刘海屏适配繁琐，不同业务需求，对应的要求也不同
+
+    方案：通用情况，如果是刘海屏，不允许内容延伸进刘海区，上面留一条黑边，如果有需要全屏并且需要延伸入刘海屏的activity单独作处理（如视频播放）

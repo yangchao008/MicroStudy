@@ -17,6 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailActivity"/>
+
+        <activity android:name=".DragImageActivity" android:theme="@style/Theme.imgFullScreen"/>
     </application>
+
 
 </manifest>

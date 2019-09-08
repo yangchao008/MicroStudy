@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:gravity="center"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.chao.microstudy.views.MyImgView
+            android:id="@+id/imgView"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:background="@mipmap/ic_directed_avator"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize">
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:text="标题"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</FrameLayout>
