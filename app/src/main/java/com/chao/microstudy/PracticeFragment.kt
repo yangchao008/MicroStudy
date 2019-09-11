@@ -27,7 +27,8 @@ class PracticeFragment : Fragment(){
         "DragCircularView",
         "WaterDropMoveView",
         "PathMeasureView",
-        "SplitView"
+        "SplitView",
+        "FireworksView"
     )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
