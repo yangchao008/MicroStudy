@@ -43,7 +43,7 @@ class PracticeFragment : Fragment(){
             setNewData(texts)
             bindToRecyclerView(recyclerView)
             setOnItemClickListener { _, _, position ->
-                val intent = Intent(activity, DragImageActivity::class.java)
+                val intent = Intent(activity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.VIEW_ID, position)
                 startActivity(intent)
             }
